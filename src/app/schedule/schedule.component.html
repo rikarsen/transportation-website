@@ -1,0 +1,131 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header clearfix">
+          <div class="pull-left">
+            <h4 class="title">Schedule</h4>
+          </div>
+          <div class="pull-right">
+            <button class="btn btn-info btn-fill btn-wd" type="button" (click)="toggleImport()"
+                    *ngIf="!showImport">
+              <i class="fas fa-upload"></i> &nbsp;
+              Import Data
+            </button>
+            <button class="btn btn-info btn-fill btn-wd" type="button" (click)="toggleImport()"
+                    *ngIf="showImport">
+              <i class="fas fa-arrow-alt-circle-left"></i> &nbsp;
+              Back to Schedule
+            </button>
+          </div>
+        </div>
+        <div class="content table-responsive table-full-width">
+          <div *ngIf="!showImport">
+            <ngx-datatable
+              class="table-striped"
+              [rows]="scheduleRows"
+              [columns]="scheduleColumns"
+              [columnMode]="'force'"
+              [headerHeight]="50"
+              [rowHeight]="51"
+              [footerHeight]="50"
+              [limit]="10"
+              [count]="10"
+              [scrollbarH]="true">
+              <div *ngFor="let column of scheduleColumns">
+                <ngx-datatable-column name="{{ column.name }}" prop="{{ column.prop }}"
+                                      headerClass="{{ column.headerClass }}" width="{{ column.width }}">
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    {{ value }}
+                  </ng-template>
+                </ngx-datatable-column>
+              </div>
+              <div>
+                <ngx-datatable-column name="Actions" sortable="false" prop="id" cellClass="cell-actions" width="100">
+                  <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
+                    {{column.name}}
+                  </ng-template>
+                  <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <button class="btn btn-info btn-fill btn-sm" (click)="openEditRecord(row._id)">
+                      <i class="fa fa-edit"></i> edit
+                    </button>
+                  </ng-template>
+                </ngx-datatable-column>
+              </div>
+            </ngx-datatable>
+          </div>
+          <div *ngIf="showImport">
+            <table class="table">
+              <thead>
+              <tr>
+                <th width="30%">Name</th>
+                <th>Size</th>
+                <th>Progress</th>
+                <th>Status</th>
+                <th width="250px">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let item of uploader.queue">
+                <td><strong>{{ item?.file?.name }}</strong></td>
+                <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
+                <td>
+                  <div class="progress" style="margin-bottom: 0;">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
+                  </div>
+                </td>
+                <td class="text-center">
+                  <span *ngIf="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                  <span *ngIf="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                  <span *ngIf="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                </td>
+                <td nowrap>
+                  <button type="button" class="btn btn-success btn-xs"
+                          (click)="item.upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                    <span class="glyphicon glyphicon-upload"></span> Upload
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs"
+                          (click)="item.cancel()" [disabled]="!item.isUploading">
+                    <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                  </button>
+                  <button type="button" class="btn btn-danger btn-xs"
+                          (click)="item.remove()">
+                    <span class="glyphicon glyphicon-trash"></span> Remove
+                  </button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            <div class="import-actions clearfix">
+              <div class="pull-left">
+                <div class="upload-btn-wrapper">
+                  <button type="button" class="btn btn-info btn-s"
+                          (click)="uploader.uploadAll()"
+                          [ngClass]="{'active': uploadBtnActive}">
+                    <span class="glyphicon glyphicon-upload"></span> Choose file
+                  </button>
+                  <input type="file" (mouseover)="uploadFileHover(true)"
+                         (mouseout)="uploadFileHover(false)" ng2FileSelect [uploader]="uploader">
+                </div>
+              </div>
+              <div class="pull-right" *ngIf="uploader.queue.length">
+                <button type="button" class="btn btn-success btn-s"
+                        (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                  <span class="glyphicon glyphicon-upload"></span> Upload all
+                </button>
+                <button type="button" class="btn btn-warning btn-s"
+                        (click)="uploader.cancelAll()" [disabled]="!uploader.isUploading">
+                  <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                </button>
+                <button type="button" class="btn btn-danger btn-s"
+                        (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+                  <span class="glyphicon glyphicon-trash"></span> Remove all
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

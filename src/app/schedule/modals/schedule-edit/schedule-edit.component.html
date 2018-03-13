@@ -1,0 +1,231 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Edit Record</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="form" novalidate (ngSubmit)="saveForm()">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Operator</label>
+          <input type="text" class="form-control border-input" placeholder="Operator" formControlName="operator">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Client Name</label>
+          <input type="text" class="form-control border-input" placeholder="Client Name" formControlName="client_name">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="text" class="form-control border-input" placeholder="Phone" formControlName="phone">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Date</label>
+          <input type="text" class="form-control border-input" placeholder="Date" formControlName="date">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>P/U Time</label>
+          <input type="text" class="form-control border-input" placeholder="P/U Time" formControlName="p_u_time">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Appt. Time</label>
+          <input type="text" class="form-control border-input" placeholder="Appt. Time" formControlName="appt_time">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>P/U Address/Entrance</label>
+          <input type="text" class="form-control border-input" placeholder="P/U Address/Entrance"
+                 formControlName="p_u_address_entrance">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>P/U City</label>
+          <input type="text" class="form-control border-input" placeholder="P/U City" formControlName="p_u_city">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Drop-off Address/Entrance</label>
+          <input type="text" class="form-control border-input" placeholder="Drop-off Address/Entrance"
+                 formControlName="drop_off_address_entrance">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Drop-off City</label>
+          <input type="text" class="form-control border-input" placeholder="Drop-off City"
+                 formControlName="drop_off_city">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Miles</label>
+          <input type="text" class="form-control border-input" placeholder="Miles" formControlName="miles">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Fare</label>
+          <input type="text" class="form-control border-input" placeholder="Fare" formControlName="fare">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Trip Type</label>
+          <input type="text" class="form-control border-input" placeholder="Trip Type" formControlName="trip_type">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Veh. Type</label>
+          <input type="text" class="form-control border-input" placeholder="Veh. Type" formControlName="veh_type">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Standing Order ID</label>
+          <input type="text" class="form-control border-input" placeholder="Standing Order ID"
+                 formControlName="standing_order_id">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Escort Count</label>
+          <input type="text" class="form-control border-input" placeholder="Escort Count"
+                 formControlName="escort_count">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Trip Num</label>
+          <input type="text" class="form-control border-input" placeholder="Trip Num" formControlName="trip_num">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Shared Group</label>
+          <input type="text" class="form-control border-input" placeholder="Shared Group"
+                 formControlName="shared_group">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Trip Direction</label>
+          <input type="text" class="form-control border-input" placeholder="Trip Direction"
+                 formControlName="trip_direction">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>One Way</label>
+          <input type="text" class="form-control border-input" placeholder="One Way" formControlName="one_way">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Comments</label>
+          <input type="text" class="form-control border-input" placeholder="Comments" formControlName="comments">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Travel Time</label>
+          <input type="text" class="form-control border-input" placeholder="Travel Time" formControlName="travel_time">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>P/U Lat.</label>
+          <input type="text" class="form-control border-input" placeholder="P/U Lat." formControlName="p_u_lat">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>P/U Long.</label>
+          <input type="text" class="form-control border-input" placeholder="P/U Long." formControlName="p_u_long">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Drop-off Lat.</label>
+          <input type="text" class="form-control border-input" placeholder="Drop-off Lat."
+                 formControlName="drop_off_lat">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Drop-off Long.</label>
+          <input type="text" class="form-control border-input" placeholder="Drop-off Long."
+                 formControlName="drop_off_long">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-success" (click)="saveForm()">Save Record</button>
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Close</button>
+</div>

@@ -1,0 +1,75 @@
+.navbar {
+  &.navbar-absolute {
+    position: absolute;
+    width: 100%;
+    z-index: 1030;
+  }
+}
+
+.navbar-transparent {
+  .navbar-brand {
+    color: #FFFFFF;
+    opacity: 0.9;
+    filter: alpha(opacity=90);
+
+    &:not([class*="text"]) {
+      color: #FFFFFF;
+    }
+  }
+}
+
+.wrapper {
+  &.wrapper-full-page {
+    height: auto;
+    min-height: 100vh;
+  }
+  .login-page {
+    //background: url(../../assets/img/background-2.jpg);
+  }
+  .full-page {
+    &:after, &:before {
+      display: block;
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+    &:after {
+      background: #5e5e5e;
+      z-index: 3;
+      opacity: .7;
+    }
+    > .content {
+      position: relative;
+      z-index: 4;
+      min-height: calc(100vh - 70px);
+      padding-top: 20vh;
+    }
+    > .footer {
+      position: relative;
+      z-index: 4;
+    }
+    .footer nav > ul a:not(.btn), .footer .copyright, .footer .copyright a {
+      color: #FFFFFF;
+      font-size: 14px;
+    }
+
+    .full-page-background {
+      background: url(../../assets/img/background-2.jpg) center center;
+      background-size: cover;
+      position: absolute;
+      z-index: 1;
+      height: 100%;
+      width: 100%;
+      display: block;
+      top: 0;
+      left: 0;
+    }
+  }
+  .form-group {
+    position: relative;
+  }
+}
