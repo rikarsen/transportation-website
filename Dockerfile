@@ -9,10 +9,10 @@ RUN apk update && apk upgrade && \
     npm install -g @angular/cli
 
 # add source code to images
-ADD . /transportation-website
+ADD . /
 
 # switch working directory
-WORKDIR /transportation-website
+WORKDIR /
 
 # install dependencies
 RUN npm install
