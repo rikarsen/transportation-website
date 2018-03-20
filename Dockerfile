@@ -6,7 +6,7 @@ RUN apk update && apk upgrade && \
     apk add nodejs && \
     # may comment this line in my computer.
     apk add nodejs-npm && \
-    sudo npm install -g @angular/cli
+    npm install -g @angular/cli
 
 # add source code to images
 ADD . /
