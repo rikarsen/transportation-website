@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { LayoutComponent } from './shared/layout/layout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ScheduleModule } from './schedule/schedule.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { AuthNotGuardService } from './authentication/auth-not-guard.service';
+import { PermanentClientsModule } from './permanent-clients/permanent-clients.module';
+import { LayoutModule } from './shared/layout/layout.module';
+import { LayoutComponent } from './shared/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import { AuthNotGuardService } from './authentication/auth-not-guard.service';
     ModalModule.forRoot(),
     LoadingBarHttpClientModule,
     AuthenticationModule,
+    LayoutModule,
     ScheduleModule,
+    PermanentClientsModule,
   ],
   providers: [
     AuthGuardService,

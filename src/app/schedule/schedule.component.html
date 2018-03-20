@@ -31,7 +31,8 @@
               [footerHeight]="50"
               [limit]="10"
               [count]="10"
-              [scrollbarH]="true">
+              [scrollbarH]="true"
+              [reorderable]="true">
               <div *ngFor="let column of scheduleColumns">
                 <ngx-datatable-column name="{{ column.name }}" prop="{{ column.prop }}"
                                       headerClass="{{ column.headerClass }}" width="{{ column.width }}">

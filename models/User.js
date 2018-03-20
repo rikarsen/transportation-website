@@ -11,11 +11,7 @@ let emailLengthChecker = (email) => {
     return false; // Return error
   } else {
     // Check the length of e-mail string
-    if (email.length < 5 || email.length > 30) {
-      return false; // Return error if not within proper length
-    } else {
-      return true; // Return as valid e-mail
-    }
+    return !(email.length < 5 || email.length > 30);
   }
 };
 

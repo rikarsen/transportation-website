@@ -50,7 +50,8 @@ export class ScheduleEditComponent implements OnInit {
       p_u_lat: [this.record.p_u_lat, Validators.required],
       p_u_long: [this.record.p_u_long, Validators.required],
       drop_off_lat: [this.record.drop_off_lat, Validators.required],
-      drop_off_long: [this.record.drop_off_long, Validators.required]
+      drop_off_long: [this.record.drop_off_long, Validators.required],
+      __connected: [this.record.__connected]
     });
   }
 
@@ -84,13 +85,14 @@ export class ScheduleEditComponent implements OnInit {
       p_u_lat: this.form.get('p_u_lat').value,
       p_u_long: this.form.get('p_u_long').value,
       drop_off_lat: this.form.get('drop_off_lat').value,
-      drop_off_long: this.form.get('drop_off_long').value
+      drop_off_long: this.form.get('drop_off_long').value,
+      __connected: this.form.get('__connected').value
     };
 
     this.scheduleService.saveSchedule(record)
       .subscribe((res: any) => {
         if (!res.success) {
-          
+
         }
       });
   }

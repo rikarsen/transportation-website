@@ -1,5 +1,5 @@
-const User = require('../models/User'),
-  Schedule = require('../models/Schedule'),
+const Schedule = require('../models/Schedule'),
+  Client = require('../models/Client'),
   ObjectId = require('mongoose').Types.ObjectId,
   multer = require('multer'),
   csv = require('csvtojson'),
@@ -75,50 +75,53 @@ module.exports = (router) => {
                   drop_off_lat: row[rowKeys[24]],
                   drop_off_long: row[rowKeys[25]]
                 }));
-
-                // revision.save()
-                //   .then(item => {
-                //     successes.push(item);
-                //     // res.status(200).json({'revision': 'Revisions added successfully'});
-                //   })
-                //   .catch(err => {
-                //     errors.push(err);
-                //     // res.status(400).send('Unable to save to database');
-                //   });
               }
             });
 
-            const client_names = [];
-            scheduleData.map(row => client_names.push(row.client_name));
+            let clientNames = [],
+              clients = [];
 
-            Schedule.update({
-              'client_name': {
-                $in: client_names
+            scheduleData.map(row => {
+              clientNames.push(row.client_name);
+
+              clients.push({
+                client_name: row.client_name
+              });
+            });
+
+            Client.update({
+              client_name: {
+                $in: clientNames
               }
             }, {
-              $inc: {
-                __connected: true
-              }
+              last_date_driven: new Date(),
+              permanent: true
             }, {
               multi: true
-            }, (err, res) => {
-              console.log(res);
+            }, err => {
+              if (!err) {
+                Client.insertMany(clients, {
+                  ordered: false
+                }, err => {
+                  if (err && err.code !== 11000) {
+                    console.log(err);
+                  } else {
+                    Schedule.insertMany(scheduleData, {
+                      ordered: false
+                    }, err => {
+                      if (err && err.code !== 11000) {
+                        console.log(err);
+                      } else {
+                        deleteFolderRecursive('files');
 
-              Schedule.insertMany(scheduleData, {
-                expire: new Date()
-              }, {
-                upsert: true,
-                new: true,
-                setDefaultsOnInsert: true
-              }, (err, schedule) => {
-                if (err) {
-                  console.log(err);
-                }
+                        res.json({success: true});
+                      }
+                    });
+                  }
+                });
+              }
 
-                deleteFolderRecursive('files');
-
-                res.json({success: true, schedule: schedule});
-              });
+              console.log(err);
             });
           }
         });
@@ -127,6 +130,22 @@ module.exports = (router) => {
 
   router.get('/all', (req, res) => {
     Schedule.find({}, (err, schedule) => {
+      if (err) {
+        res.json({success: false, message: err});
+      } else {
+        if (!schedule) {
+          res.json({success: false, message: 'No schedule found.'});
+        } else {
+          res.json({success: true, schedule: schedule});
+        }
+      }
+    });
+  });
+
+  router.get('/permanents', (req, res) => {
+    Client.find({
+      permanent: true
+    }, (err, schedule) => {
       if (err) {
         res.json({success: false, message: err});
       } else {

@@ -28,6 +28,7 @@ export class Schedule {
   p_u_long: Number;
   drop_off_lat: Number;
   drop_off_long: Number;
+  __connected: Boolean;
 
   constructor (schedule?) {
     schedule = schedule || {};
@@ -59,6 +60,7 @@ export class Schedule {
     this.p_u_long = schedule.p_u_long || null;
     this.drop_off_lat = schedule.drop_off_lat || null;
     this.drop_off_long = schedule.drop_off_long || null;
+    this.__connected = schedule.__connected || false;
   }
 
   static formatTime (time) {

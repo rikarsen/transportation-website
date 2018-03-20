@@ -7,6 +7,13 @@
     tr > td,
     .datatable-body-cell, .datatable-header-cell {
       border-top: 1px solid $table-line-color;
+
+      .warning {
+        color: $warning-color;
+      }
+      .success {
+        color: $success-color;
+      }
     }
   }
   > thead > tr > th,
@@ -118,12 +125,10 @@
 }
 
 .table-striped {
-  tbody > tr:nth-of-type(2n+1),
-  .datatable-row-wrapper:nth-of-type(2n+1) {
-    background-color: #fff;
+  tbody > tr:nth-of-type(2n+1) {
+    background-color: $white-bg;
   }
-  tbody > tr:nth-of-type(2n),
-  .datatable-row-wrapper:nth-of-type(2n) {
+  tbody > tr:nth-of-type(2n) {
     background-color: $pale-bg;
   }
   > thead > tr > th,
@@ -138,5 +143,8 @@
     &.cell-actions {
       padding: 10px 8px;
     }
+  }
+  .empty-row {
+    padding: 15px;
   }
 }

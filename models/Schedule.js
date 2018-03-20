@@ -29,8 +29,7 @@ const scheduleSchema = new Schema({
   p_u_lat: {type: Number},
   p_u_long: {type: Number},
   drop_off_lat: {type: Number},
-  drop_off_long: {type: Number},
-  __connected: {type: Boolean, default: false}
+  drop_off_long: {type: Number}
 });
 
 module.exports = mongoose.model('Schedule', scheduleSchema);

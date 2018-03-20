@@ -1,3 +1,5 @@
+@import "../../assets/sass/paper/variables";
+
 .import-actions {
   padding: 20px;
 }
@@ -35,8 +37,4 @@
 
 .table tbody > tr {
   white-space: nowrap;
-}
-
-::ng-deep .empty-row {
-  padding: 15px;
 }

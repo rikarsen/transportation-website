@@ -7,7 +7,8 @@ export interface RouteInfo {
 }
 
 export const ROUTES: RouteInfo[] = [
-  {path: 'schedule', title: 'Schedule', icon: 'ti-panel'},
+  {path: '/schedule', title: 'Schedule', icon: 'ti-panel'},
+  {path: '/permanent-clients', title: 'Permanent Clients', icon: 'ti-panel'},
 ];
 
 @Component({
@@ -18,7 +19,7 @@ export const ROUTES: RouteInfo[] = [
 export class SidebarComponent implements OnInit {
   public menuItems: any[];
 
-  constructor () { }
+  constructor () {}
 
   ngOnInit () {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
